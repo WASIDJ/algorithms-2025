@@ -12,3 +12,4 @@ BOOKS/
 *.o
 *.out
 *.exe
+.leetcode/
