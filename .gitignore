@@ -1,0 +1,14 @@
+BOOKS/
+.vscode/
+# 只保留 cpp 文件，忽略其他（包括可执行文件）
+*
+!*/
+!.gitignore
+!*.cpp
+!**/*.cpp
+!*/*.md
+!*.md
+# 常见编译产物
+*.o
+*.out
+*.exe
