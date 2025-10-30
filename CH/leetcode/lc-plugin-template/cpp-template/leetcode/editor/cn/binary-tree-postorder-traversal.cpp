@@ -1,13 +1,15 @@
 /*
- * @lc app=leetcode.cn id=144 lang=cpp
+ * @lc app=leetcode.cn id=145 lang=cpp
  * @lcpr version=30300
  *
- * [144] 二叉树的前序遍历
+ * [145] 二叉树的后序遍历
  */
 
 #include "../common/ListNode.cpp"
 #include "../common/TreeNode.cpp"
+#include <algorithm>
 #include <iostream>
+#include <stack>
 #include <string>
 #include <vector>
 
@@ -28,16 +30,25 @@ using namespace std;
  */
 class Solution {
 public:
-  vector<int> preorderTraversal(TreeNode *root) {
+  vector<int> postorderTraversal(TreeNode *root) {
     vector<int> res;
+    stack<TreeNode *> st;
     if (root == nullptr) {
       return res;
     }
-    res.push_back(root->val);
-    vector<int> left = preorderTraversal(root->left);
-    vector<int> right = preorderTraversal(root->right);
-    res.insert(res.end(), left.begin(), left.end());
-    res.insert(res.end(), right.begin(), right.end());
+    st.push(root);
+    while (!st.empty()) {
+      TreeNode *node = st.top();
+      st.pop();
+      res.push_back(node->val);
+      if (node->left) {
+        st.push(node->left);
+      }
+      if (node->right) {
+        st.push(node->right);
+      }
+    }
+    reverse(res.begin(), res.end());
     return res;
   }
 };
